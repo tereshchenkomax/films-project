@@ -6,6 +6,8 @@ import FilmForm from './components/FilmForm'
 
 import data from './data'
 
+export const Context = React.createContext();
+
 class App extends Component {
 	state = {
 		films: [],
@@ -48,9 +50,11 @@ class App extends Component {
 					}
 
 					<div className={`${numberOfColumns} wide column`}>
-						<FilmList films={this.state.films}
-								  toggleFeatured={this.toggleFeatured}
-						/>
+						<Context.Provider value={{toggleFeatured :this.toggleFeatured}}>
+							<FilmList films={this.state.films}
+								  // toggleFeatured={this.toggleFeatured}
+							/>
+						</Context.Provider>
 					</div>
 				</div>
 			</div>

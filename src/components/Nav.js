@@ -9,7 +9,7 @@ const Nav = ({showFilmForm}) => (
 		<a  onClick={showFilmForm}
 			className="item"
 		>
-			<i className="icon plus"></i> Add new film
+			<i className="icon plus"/> Add new film
 		</a>
 	</div>
 )
