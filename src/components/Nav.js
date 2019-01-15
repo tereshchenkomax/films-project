@@ -5,12 +5,12 @@ import PropTypes from 'prop-types'
 
 const Nav = ({showFilmForm}) => (
 	<div className="ui secondary menu pointing">
-		<a href="/" className="item">Open</a>
-		<a  onClick={showFilmForm}
+		<button className="item">Open</button>
+		<button  onClick={showFilmForm}
 			className="item"
 		>
 			<i className="icon plus"/> Add new film
-		</a>
+		</button>
 	</div>
 )
 

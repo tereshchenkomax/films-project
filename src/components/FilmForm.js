@@ -5,6 +5,7 @@ import FormMessage from './FormMessage'
 class FilmForm extends Component {
 	state  = {
 		data: {
+			id: null,
 			title: '',
 			description: '',
 			duration: 0,
@@ -17,6 +18,20 @@ class FilmForm extends Component {
 
 	}
 
+	componentDidMount() {
+		if(this.props.film && this.props.film.id) {
+			this.setState({data: this.props.film})
+		}
+	}
+
+	static getDerivedStateFromProps (nextProps, state){
+		if(nextProps.film && nextProps.film.id !== state.data.id){
+			return {
+				data: nextProps.film
+			}
+		}
+		return null
+	}
 
 	static validate(data) {
 		const errors = {}
@@ -34,7 +49,7 @@ class FilmForm extends Component {
 		this.setState({errors})
 
 		if(Object.keys(errors).length === 0) {
-			console.log(this.state.data);
+			this.props.saveFilm	(this.state.data);
 		}
 	}
 
@@ -70,7 +85,6 @@ class FilmForm extends Component {
 								   onChange={this.handleChange}
 								   id="title"
 								   placeholder="film title"
-								   type="text"
 							/>
 							<FormMessage content={errors.title} type="error"/>
 						</div>
